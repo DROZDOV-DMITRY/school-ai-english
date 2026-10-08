@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="School AI English — материалы по английскому языку в визуальном стиле сайта курсов ИИ.">
+<title>School AI English</title>
+<style>
+:root{
+  --bg:#f5f7fb;--card:#ffffff;--text:#17223c;--muted:#6d7997;--line:#e3e8f4;
+  --primary:#3553d8;--primary-2:#7c55e6;--soft:#eef2ff;--shadow:0 18px 46px rgba(42,56,98,.08);
+  --max:1380px;--r:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Segoe UI",Arial,sans-serif;line-height:1.6;overflow-x:hidden}
+a{color:inherit}
+.page-bg{position:fixed;inset:0;z-index:-3;pointer-events:none;overflow:hidden}
+.page-bg::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 10% 10%,rgba(131,118,237,.13),transparent 24%),radial-gradient(circle at 92% 18%,rgba(77,208,201,.12),transparent 20%),linear-gradient(180deg,#f8faff 0%,#f4f6fb 100%)}
+.word-cloud{position:absolute;inset:-6% -4%;display:grid;grid-template-columns:repeat(5,1fr);gap:18px;transform:rotate(-11deg) scale(1.05);filter:grayscale(.1) brightness(.46);opacity:.16}
+.word-col{display:flex;flex-direction:column;gap:16px;justify-content:space-around}
+.word-col span{font-size:34px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#8090bf;white-space:nowrap}
+.wrapper{width:min(calc(100% - 28px),var(--max));margin:auto;padding:24px 0 72px}
+.topnav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0 20px;position:sticky;top:0;z-index:10;backdrop-filter:blur(12px)}
+.topnav::before{content:"";position:absolute;inset:0 -24px;background:rgba(245,247,251,.72);z-index:-1;border-bottom:1px solid rgba(227,232,244,.76)}
+.brandline{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-badge{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#1d2f75,#4d58d9 60%,#865be8);display:grid;place-items:center;color:#fff;font-weight:900;box-shadow:0 10px 24px rgba(59,84,200,.26)}
+.brandtext strong{display:block;font-size:14px;letter-spacing:.04em}
+.brandtext span{display:block;font-size:11px;color:var(--muted);letter-spacing:.11em;text-transform:uppercase;font-weight:800}
+.navbuttons{display:flex;flex-wrap:wrap;gap:10px}
+.navbtn{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:10px 16px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);text-decoration:none;font-size:13px;font-weight:800;color:#40507d;transition:.18s ease}
+.navbtn:hover,.navbtn.active{transform:translateY(-1px);border-color:#cfd8f3;background:#f7f9ff;color:#243767}
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1.08fr) 420px;gap:28px;align-items:center;min-height:390px;padding:38px 42px;border:1px solid #dfe4f6;border-radius:32px;background:linear-gradient(135deg,#21317a 0%,#4d4ac7 48%,#9b63ee 100%);color:#fff;overflow:hidden;box-shadow:0 30px 70px rgba(54,56,140,.22)}
+.hero::before{content:"";position:absolute;right:-60px;top:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,#ffffff25 0%,#ffffff09 42%,transparent 66%)}
+.hero::after{content:"";position:absolute;left:-90px;bottom:-110px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,#ffd97833 0%,#ffd97812 44%,transparent 70%)}
+.hero-copy{position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.26);background:rgba(255,255,255,.12);font-size:11px;font-weight:900;letter-spacing:.17em;text-transform:uppercase}
+.hero h1{margin:18px 0 14px;font-size:clamp(2.2rem,4.8vw,4.6rem);line-height:1.02;letter-spacing:-.05em;max-width:720px}
+.hero h1 span{color:#ffe3a2}
+.hero p{margin:0;max-width:640px;color:rgba(255,255,255,.88);font-size:15px}
+.hero-pills{display:flex;flex-wrap:wrap;gap:11px;margin-top:26px}
+.hero-pill{display:inline-flex;align-items:center;gap:10px;padding:10px 15px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);font-size:12px;font-weight:800}
+.hero-pill b{font-size:15px;color:#ffe29f}
+.hero-figure{position:relative;display:flex;justify-content:flex-end;align-items:flex-end;min-height:320px}
+.hero-art{max-width:420px;width:100%;height:auto;filter:drop-shadow(0 16px 35px rgba(14,11,44,.28))}
+.layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:24px;align-items:start;margin-top:24px}
+.sidebar{position:sticky;top:92px;display:flex;flex-direction:column;gap:18px}
+.card,.panel,.learning-section{background:var(--card);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow)}
+.panel{padding:18px}
+.panel h3{margin:0 0 10px;font-size:16px;letter-spacing:-.02em}
+.panel p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.outline-links{display:grid;gap:8px;margin-top:12px}
+.outline-link{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:15px;text-decoration:none;color:#516182;font-size:13px;font-weight:750;transition:.16s ease}
+.outline-link:hover,.outline-link.active{background:#f1efff;color:#4e3fba}
+.outline-link .num{display:grid;place-items:center;min-width:31px;height:31px;padding:0 8px;border-radius:10px;background:#eef2fb;color:#8795b6;font-size:11px;font-weight:900}
+.outline-link.active .num{background:#ddd7ff;color:#5242bc}
+.content-col{display:flex;flex-direction:column;gap:22px;min-width:0}
+.utility{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:3px 2px 0}
+.searchbox{position:relative;flex:1;min-width:260px;max-width:520px}
+.searchbox input{width:100%;height:50px;padding:12px 18px 12px 48px;border-radius:16px;border:1px solid var(--line);background:#fff;color:#243356;outline:0;font-size:13px;box-shadow:var(--shadow)}
+.searchbox input:focus{border-color:#8a72ea;box-shadow:0 0 0 4px rgba(138,114,234,.13)}
+.searchbox svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:#8d98b6;fill:none;stroke-width:2}
+.actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.result-count{font-size:12px;font-weight:700;color:#7683a1}
+.print-btn{cursor:pointer;display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 16px;border-radius:15px;border:1px solid var(--line);background:#fff;color:#455171;font-size:12px;font-weight:800;box-shadow:var(--shadow)}
+.print-btn:hover{background:#f8faff}
+.print-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.9}
+.footer{text-align:center;color:#8c98b1;font-size:12px;padding:10px 12px}
+/* integrated content styling */
+.learning-section{overflow:hidden;scroll-margin-top:96px}
+.learning-section .section-heading{padding:30px 32px 24px;display:flex;align-items:center;gap:18px;border-bottom:1px solid #edf1fa;background:linear-gradient(135deg,var(--light,#f4f1ff),#fff 78%)}
+.learning-section .section-number{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;flex:none;font-size:22px;font-weight:900;color:#fff;background:var(--accent,#7752e2);box-shadow:0 10px 22px color-mix(in srgb,var(--accent,#7752e2),transparent 76%)}
+.learning-section .section-overline{font-size:10px;letter-spacing:.16em;font-weight:900;color:var(--textaccent,#5f46c1);margin-bottom:4px;text-transform:uppercase}
+.learning-section h2{margin:0;font-size:clamp(23px,2.1vw,32px);line-height:1.18;letter-spacing:-.03em}
+.learning-section .section-content{padding:28px 32px 34px}
+.learning-section .body-copy{font-size:14px;line-height:1.82;color:#586581;margin:0 0 18px;max-width:920px}
+.learning-section .body-copy strong,.learning-section .guide-steps strong,.learning-section .tip strong{color:#2f3778}
+.learning-section .subheading{display:flex;align-items:center;gap:10px;margin:28px 0 16px;font-size:19px;font-weight:850;letter-spacing:-.02em}
+.learning-section .subheading::before{content:"";width:6px;height:22px;border-radius:999px;background:var(--accent,#7752e2)}
+.learning-section .table-outer{width:100%;border:1px solid #e8edf7;border-radius:18px;overflow:auto;margin:18px 0 24px}
+.learning-section .data-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;line-height:1.56}
+.learning-section .data-table thead{background:var(--light,#f4f1ff)}
+.learning-section .data-table th{padding:15px 16px;text-align:left;font-size:11px;font-weight:900;letter-spacing:.03em;color:var(--textaccent,#5f46c1)}
+.learning-section .data-table td{padding:13px 16px;border-top:1px solid #edf1fa;vertical-align:middle;color:#55627d}
+.learning-section .data-table td:first-child{font-weight:800;color:var(--textaccent,#5f46c1)}
+.learning-section .data-table tbody tr:nth-child(even){background:#fbfcff}
+.learning-section .data-table tbody tr:hover{background:var(--light,#f4f1ff)}
+.learning-section .data-table .uppercase{font-size:21px;line-height:1;font-weight:900;color:#4054a9}
+.learning-section .data-table .lowercase{font-size:17px;margin-left:6px;color:#9da6c4;font-weight:750}
+.learning-section .guide-steps{list-style:none;display:grid;gap:14px;padding:0;margin:16px 0 24px}
+.learning-section .guide-steps li{display:flex;gap:16px;align-items:flex-start;padding:16px 17px;border-radius:15px;background:#fafbff;border:1px solid #edf1fa;font-size:14px;line-height:1.72;color:#4f5e7a}
+.learning-section .step-num{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;flex:none;background:var(--light,#f4f1ff);color:var(--textaccent,#5f46c1);font-size:15px;font-weight:900}
+.learning-section .tip{display:flex;align-items:flex-start;gap:14px;padding:15px 18px;border-radius:17px;border:1px solid #e6e8f4;background:#f7f8fe;margin-top:18px}
+.learning-section .tip p{margin:0;font-size:13px;color:#5b6784;line-height:1.72}
+.learning-section .tip-symbol{display:grid;place-items:center;width:25px;height:25px;border-radius:8px;background:#665dc8;color:#fff;font-size:13px;font-weight:900;flex:none}
+.learning-section .tip-practice{background:#eefbf6;border-color:#d7f3e7}
+.learning-section .tip-practice .tip-symbol{background:#1fa585}
+.learning-section .tip-important{background:#fff8e9;border-color:#f0e3c3}
+.learning-section .tip-important .tip-symbol{background:#c88a23}
+.lesson-note{padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:22px;color:#5c6883;font-size:13px;line-height:1.68;box-shadow:var(--shadow)}
+.lesson-note strong{color:#2e3b6d}
+@media (max-width: 1120px){
+  .hero{grid-template-columns:1fr;min-height:auto}.hero-figure{justify-content:center;min-height:auto}.layout{grid-template-columns:1fr}.sidebar{position:static}
+}
+@media (max-width: 760px){
+  .wrapper{width:min(calc(100% - 20px),var(--max));padding-top:14px}.topnav{position:static}.topnav::before{inset:0 -12px}
+  .hero{padding:28px 22px 24px;border-radius:24px}.hero h1{font-size:clamp(2rem,9vw,3rem)}
+  .panel,.learning-section{border-radius:22px}.learning-section .section-heading,.learning-section .section-content{padding-left:22px;padding-right:22px}
+  .word-cloud{grid-template-columns:repeat(2,1fr);gap:10px;opacity:.12}.word-col span{font-size:26px}
+  .searchbox{min-width:100%}.actions{width:100%;justify-content:space-between}
+}
+@media print{
+  .page-bg,.topnav,.sidebar,.utility,.hero{display:none!important}.wrapper{width:100%;padding:0}.layout{display:block}.content-col{display:block}.learning-section{break-inside:avoid;box-shadow:none;margin-bottom:18px}.learning-section .table-outer{overflow:visible}.footer{padding-top:24px}
+}
+</style>
+</head>
+<body>
+<div class="page-bg">
+  <div class="word-cloud" aria-hidden="true">
+    <div class="word-col"><span>Apple</span><span>Book</span><span>Magic</span><span>Castle</span><span>English</span></div>
+    <div class="word-col"><span>Word</span><span>Speak</span><span>Letter</span><span>Wizard</span><span>Learn</span></div>
+    <div class="word-col"><span>Read</span><span>School</span><span>Spell</span><span>Story</span><span>Friend</span></div>
+    <div class="word-col"><span>Phonics</span><span>Bright</span><span>Lesson</span><span>Alphabet</span><span>Dream</span></div>
+    <div class="word-col"><span>Listen</span><span>Practice</span><span>Smile</span><span>Future</span><span>Travel</span></div>
+  </div>
+</div>
+<div class="wrapper">
+  <header class="topnav">
+    <a class="brandline" href="./">
+      <div class="logo-badge">EN</div>
+      <div class="brandtext"><strong>School AI English</strong><span>Школа №14 · английский язык</span></div>
+    </a>
+    <nav class="navbuttons">
+      <a class="navbtn active" href="./">Главная</a>
+      <a class="navbtn" href="./lessons/alphabet.html">Английский алфавит</a>
+      <a class="navbtn" href="https://drozdov-dmitry.github.io/school-ai-courses/">Курс ИИ</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">Английский язык · знания + ИИ</div>
+      <h1>Учебные материалы по <span>английскому</span> в стиле сайта курсов ИИ</h1>
+      <p>Здесь будут публиковаться самостоятельные предметные материалы. Внутри занятий можно аккуратно вплетать способы использования ИИ: для тренировки, самопроверки, объяснения и практики.</p>
+      <div class="hero-pills">
+        <div class="hero-pill"><b>1</b> первый опубликованный материал</div>
+        <div class="hero-pill"><b>AI</b> ИИ встроен как инструмент, а не как замена предмета</div>
+      </div>
+    </div>
+    <div class="hero-figure">
+<svg class="hero-art" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff2c7"/>
+      <stop offset="100%" stop-color="#d3d8ff"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#40338b"/>
+      <stop offset="100%" stop-color="#241b58"/>
+    </linearGradient>
+  </defs>
+  <circle cx="412" cy="82" r="44" fill="#fff4c2" opacity=".9"/>
+  <circle cx="422" cy="72" r="8" fill="#fff" opacity=".9"/>
+  <g opacity=".95">
+    <path d="M220 314h210l-18-64-25 13-18-71-33 30-15-90-36 40-28-24-12 56-23-12-2 33-16-9-14 98z" fill="url(#g2)"/>
+    <rect x="293" y="235" width="18" height="79" rx="9" fill="#2f236d"/>
+    <rect x="356" y="222" width="16" height="92" rx="8" fill="#2f236d"/>
+    <rect x="255" y="254" width="14" height="60" rx="7" fill="#2f236d"/>
+    <rect x="324" y="274" width="22" height="40" rx="10" fill="#ffc96e" opacity=".72"/>
+    <rect x="381" y="258" width="20" height="32" rx="10" fill="#ffc96e" opacity=".72"/>
+  </g>
+  <path d="M138 302c0-50 31-86 76-86 48 0 76 37 76 86" fill="#2e236c" opacity=".42"/>
+  <g transform="translate(94 118)">
+    <path d="M82 56c14 0 28 10 34 27l8 23H48l8-23c6-17 13-27 26-27z" fill="#4a3fa6"/>
+    <path d="M79 0L35 73h88L79 0z" fill="#e96d5d"/>
+    <path d="M79 12l-8 13h16l-8-13z" fill="#ffd978"/>
+    <circle cx="79" cy="101" r="34" fill="#f7d8b3"/>
+    <ellipse cx="66" cy="98" rx="5.5" ry="7" fill="#2d245e"/>
+    <ellipse cx="92" cy="98" rx="5.5" ry="7" fill="#2d245e"/>
+    <path d="M72 116c4 5 10 8 16 8s12-3 16-8" fill="none" stroke="#2d245e" stroke-width="4" stroke-linecap="round"/>
+    <path d="M50 122c8 28 58 28 66 0-15 16-51 16-66 0z" fill="#ffffff"/>
+    <path d="M72 135c4 5 10 8 17 8 7 0 14-3 18-8v54H53z" fill="#3fb38e"/>
+    <path d="M44 189h72l-7 17H51z" fill="#2f236d"/>
+    <path d="M62 143l-11 22 16 17M97 143l11 22-16 17" fill="none" stroke="#2f236d" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g fill="#ffffff" opacity=".9">
+    <circle cx="180" cy="45" r="2.6"/><circle cx="204" cy="31" r="2.1"/><circle cx="455" cy="136" r="2.2"/>
+    <circle cx="318" cy="59" r="2.4"/><circle cx="472" cy="197" r="1.8"/><circle cx="369" cy="34" r="1.8"/>
+  </g>
+  <path d="M0 324c74-11 142-16 228-10 70 5 122 7 174 4 42-2 82-8 118-18v120H0z" fill="#1d1648"/>
+</svg>
+</div>
+  </section>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="panel">
+        <h3>Раздел</h3>
+        <p>Отдельный мини-сайт для английского языка с тем же визуальным настроением, что и у основного сайта курсов ИИ.</p>
+      </div>
+      <div class="panel">
+        <h3>Первые материалы</h3>
+        <div class="outline-links">
+          <a class="outline-link active" href="./lessons/alphabet.html"><span class="num">01</span><span>Английский алфавит</span></a>
+        </div>
+      </div>
+    </aside>
+    <main class="content-col">
+      <div class="card" style="padding:24px 26px;">
+        <div style="display:flex;justify-content:space-between;gap:18px;align-items:flex-start;flex-wrap:wrap;">
+          <div>
+            <div class="eyebrow" style="background:#eef2ff;color:#4e4ab7;border-color:#dde3ff">Стартовая публикация</div>
+            <h2 style="margin:14px 0 10px;font-size:clamp(1.7rem,3vw,2.6rem);letter-spacing:-.04em;">Английские буквы и сочетания</h2>
+            <p style="margin:0;color:var(--muted);max-width:780px;">Большая визуальная шпаргалка по алфавиту, базовым правилам чтения, буквенным сочетаниям и транскрипции.</p>
+          </div>
+          <a class="navbtn active" href="./lessons/alphabet.html">Открыть урок</a>
+        </div>
+      </div>
+      <div class="lesson-note"><strong>Что дальше:</strong> новые страницы можно добавлять прямо в папку <code>lessons/</code> без лишних подсекций. Общий стиль уже заложен в каждой странице.</div>
+    </main>
+  </div>
+
+  <footer class="footer">School AI English · отдельный предметный сайт в визуальной системе проекта</footer>
+</div>
+</body>
+</html>
